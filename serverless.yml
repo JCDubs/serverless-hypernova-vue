@@ -1,0 +1,31 @@
+service: sls-hypernova-function
+
+plugins:
+  - serverless-webpack
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: ${opt:stage, 'test'}
+  region: ${opt:region, 'eu-west-1'}
+  logRetentionInDays: 5
+  versionFunctions: true
+  endpointType: regional
+
+custom:
+  webpack:
+    webpackConfig: ./webpack.server.js
+    includeModules: true
+    keepOutputDirectory: true
+
+package:
+  individually: true
+
+functions:
+  renderComponent:
+    handler: src/handler/handler.post
+    events:
+      - http:
+          method: post
+          path: /api/hyp-vue/
