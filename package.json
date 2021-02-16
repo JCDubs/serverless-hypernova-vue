@@ -2,15 +2,19 @@
   "name": "serverless-hypernova-vue",
   "version": "0.1.0",
   "private": true,
+  "componentNmae": "HelloWorld",
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "serve": "vue-cli-service serve --open",
+    "serve:lambda": "sls offline -s dev",
+    "ssr": "yarn serve:lambda & yarn serve",
+    "build:client": "vue-cli-service build --silent",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "hypernova-vue": "^3.0.5",
     "vue": "^2.6.11"
   },
   "devDependencies": {
@@ -23,8 +27,15 @@
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
+    "hypernova-vue": "^3.0.5",
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
-    "vue-template-compiler": "^2.6.11"
+    "serverless": "^1.83.2",
+    "serverless-offline": "^6.8.0",
+    "serverless-webpack": "^5.3.5",
+    "vue-template-compiler": "^2.6.11",
+    "webpack-import-glob-loader": "^1.6.3",
+    "webpack-manifest-plugin": "^3.0.0",
+    "webpack-node-externals": "^2.5.2"
   }
 }
